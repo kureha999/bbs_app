@@ -8,6 +8,11 @@
 * Rails7以降は、WebpackerがデフォルトでインストールされなくなるためNode.jsは、不要
 * docker compose run web rails db:migrate
 
+### rubocop
+> docker compose run web bundle exec rubocop
+* docker compose run web bundle exec rubocop -a
+> rubocopが指摘した問題を自動的に修正してくれる
+
 #### 1.作業ディレクトリ作成
 ```
 mkdir bbs_app
