@@ -6,6 +6,7 @@
 * dockerfileがrails new . をしたら勝手に上書きされてしまうので拡張子を.devにする。
 * docker-compose.ymlでversion設定不要。
 * Rails7以降は、WebpackerがデフォルトでインストールされなくなるためNode.jsは、不要
+* css適応されない時に,docker compose exec web rails tailwindcss:build
 * docker compose run web rails db:migrate
 
 ### rubocop
