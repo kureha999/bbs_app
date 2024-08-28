@@ -201,3 +201,16 @@ git stash
 git stash pop
 ```
 * 3.スタッシュを復元する：リモートの変更を取り込んだ後、スタッシュした変更を復元する
+
+##### Gemのinatallがうまくいかなかったとき
+* キャッシュのクリア
+> 既存のコンテナやキャッシュをすべて削除。古い設定や依存関係がリセット。
+```
+docker compose down --rmi all --volumse --remove-orphans
+```
+* インストールの再実行
+> コンテナの再構築。必要なGenを再インストール。
+```
+docker compose up -d --build
+docker compose run web bundle install
+```
