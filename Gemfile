@@ -1,5 +1,21 @@
 source "https://rubygems.org"
 
+gem "sorcery", "~> 0.17.0"
+gem "bcrypt", "~> 3.1.20"
+gem "oauth", "~> 1.1.0"
+gem "oauth2", "~> 2.0.9"
+gem "oauth-tty", "~> 1.0.5"
+gem "snaky_hash", "~> 2.0.1"
+gem "version_gem", "~> 1.1.4"
+gem "faraday", "~> 2.11.0"
+gem "jwt", "~> 2.8.2"
+gem "multi_xml", "~> 0.7.1"
+gem "hashie", "~> 5.0.0"
+gem "faraday-net_http", "~> 3.3.0"
+gem "net-http", "~> 0.4.1"
+gem "uri", "~> 0.13.1"
+
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.2.1"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
