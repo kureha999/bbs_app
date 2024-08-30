@@ -12,5 +12,4 @@ class Comment < ApplicationRecord
       errors.add(:user_id, "自分の投稿にはコメントできません")
     end
   end
-
 end
