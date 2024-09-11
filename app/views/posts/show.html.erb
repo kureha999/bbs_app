@@ -1,0 +1,26 @@
+<h1><%= @post.title %></h1>
+<p><%= @post.body %></p>
+<p>投稿者: <%= @post.user.email %></p>
+
+<h2>コメント</h2>
+<% @post.comments.each do |comment| %>
+  <div>
+    <p><%= comment.body %></p>
+    <p>コメント者: <%= comment.user.email %></p>
+  </div>
+<% end %>
+
+<% if logged_in? && current_user != @post.user %>
+  <h3>コメントを追加</h3>
+  <%= form_with model: [@post, @post.comments.build], local: true do |form| %>
+    <div>
+      <%= form.label :body, 'コメント内容' %>
+      <%= form.text_area :body %>
+    </div>
+    <%= form.submit 'コメントを投稿' %>
+  <% end %>
+<% end %>
+
+<%= link_to '編集', edit_post_path(@post) if logged_in? && current_user == @post.user %>
+<%= link_to '削除', @post, method: :delete, data: { confirm: '本当に削除しますか？' } if logged_in? && current_user == @post.user %>
+<%= link_to '一覧に戻る', posts_path %>
