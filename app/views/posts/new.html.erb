@@ -1,0 +1,25 @@
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
+  <div class="w-full max-w-lg bg-white shadow-lg rounded-lg p-8">
+    <h1 class="text-3xl font-extrabold text-center text-purple-600 mb-6">新規投稿</h1>
+
+    <%= form_with model: @post, local: true do |f| %>
+      <div class="mb-5">
+        <%= f.label :title, "タイトル", class: "block text-sm font-semibold text-gray-700" %>
+        <%= f.text_field :title, class: "mt-1 block w-full p-2 border border-purple-300 rounded-md shadow-sm focus:ring-pink-500 focus:border-pink-500 sm:text-sm" %>
+      </div>
+
+      <div class="mb-5">
+        <%= f.label :content, "本文", class: "block text-sm font-semibold text-gray-700" %>
+        <%= f.text_area :content, rows: 5, class: "mt-1 block w-full p-2 border border-purple-300 rounded-md shadow-sm focus:ring-pink-500 focus:border-pink-500 sm:text-sm" %>
+      </div>
+
+      <div class="mt-6">
+        <%= f.submit "投稿する", class: "w-full bg-gradient-to-r from-green-400 to-blue-500 text-white py-2 rounded-md hover:from-green-500 hover:to-blue-600" %>
+      </div>
+    <% end %>
+
+    <div class="mt-6 text-center">
+      <%= link_to '投稿一覧に戻る', posts_path, class: "text-blue-600 hover:text-blue-800 font-semibold underline" %>
+    </div>
+  </div>
+</div>

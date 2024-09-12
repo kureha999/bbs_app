@@ -35,7 +35,10 @@ class PostsController < ApplicationController
   # 投稿削除
   def destroy
     @post.destroy
-    redirect_to posts_path, notice: "投稿が削除されました。"
+    respond_to do |format|
+      format.html { redirect_to posts_path, notice: "投稿が削除されました。" }
+      format.turbo_stream # Turbo Streamを使う場合
+    end
   end
 
   private
@@ -45,6 +48,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :content)
   end
 end

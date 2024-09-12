@@ -1,26 +1,40 @@
-<h1><%= @post.title %></h1>
-<p><%= @post.body %></p>
-<p>投稿者: <%= @post.user.email %></p>
+<div class="min-h-screen bg-gradient-to-r from-yellow-300 via-orange-300 to-red-400 p-8">
+  <div class="max-w-2xl mx-auto bg-white shadow-lg rounded-lg p-8">
+    <h1 class="text-4xl font-bold text-purple-700 mb-4"><%= @post.title %></h1>
+    <p class="text-gray-700 mb-6"><%= @post.content %></p>
+    <p class="text-sm text-gray-500">投稿者: <%= @post.user.email %></p>
 
-<h2>コメント</h2>
-<% @post.comments.each do |comment| %>
-  <div>
-    <p><%= comment.body %></p>
-    <p>コメント者: <%= comment.user.email %></p>
-  </div>
-<% end %>
+    <h2 class="text-2xl font-bold text-blue-600 mt-8 mb-4">コメント</h2>
+    <% if @post.comments.any? %>
+      <% @post.comments.each do |comment| %>
+        <div class="mb-4 p-4 bg-gray-100 rounded-lg">
+          <p class="text-gray-800"><%= comment.content %></p>
+          <p class="text-sm text-gray-500 mt-2">コメント者: <%= comment.user.email %></p>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="text-gray-600">まだコメントがありません。</p>
+    <% end %>
 
-<% if logged_in? && current_user != @post.user %>
-  <h3>コメントを追加</h3>
-  <%= form_with model: [@post, @post.comments.build], local: true do |form| %>
-    <div>
-      <%= form.label :body, 'コメント内容' %>
-      <%= form.text_area :body %>
+    <% if logged_in? && current_user != @post.user %>
+      <h3 class="text-xl font-semibold text-green-600 mt-6 mb-3">コメントを追加</h3>
+      <%= form_with model: [@post, @post.comments.build], local: true do |form| %>
+        <div class="mb-4">
+          <%= form.label :content, 'コメント内容', class: "block text-sm font-semibold text-gray-700" %>
+          <%= form.text_area :content, class: "mt-1 block w-full p-2 border border-green-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500" %>
+        </div>
+        <%= form.submit 'コメントを投稿', class: "bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition-colors" %>
+      <% end %>
+    <% end %>
+
+    <div class="mt-6 flex justify-between">
+      <% if logged_in? && current_user == @post.user %>
+        <div>
+          <%= link_to '編集', edit_post_path(@post), class: "bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors" %>
+          <%= link_to '削除', @post, method: :delete, data: { turbo_method: :delete, confirm: '本当に削除しますか？' }, class: "bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition-colors ml-2" %>
+        </div>
+      <% end %>
+      <%= link_to '一覧に戻る', posts_path, class: "text-gray-600 hover:text-gray-800 underline" %>
     </div>
-    <%= form.submit 'コメントを投稿' %>
-  <% end %>
-<% end %>
-
-<%= link_to '編集', edit_post_path(@post) if logged_in? && current_user == @post.user %>
-<%= link_to '削除', @post, method: :delete, data: { confirm: '本当に削除しますか？' } if logged_in? && current_user == @post.user %>
-<%= link_to '一覧に戻る', posts_path %>
+  </div>
+</div>

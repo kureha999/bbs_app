@@ -1,22 +1,20 @@
-<div class="container">
-  <div class="row">
-    <div class=" col-md-10 col-lg-8 mx-auto">
-      <h1>ログイン</h1>
-      <%= form_with url: login_path do |f| %>
-        <div class="mb-3">
-          <%= f.label :email %>
-          <%= f.email_field :email, class: "form-control" %>
-        </div>
-        <div class="mb-3">
-          <%= f.label :password %>
-          <%= f.password_field :password, class: "form-control" %>
-        </div>
-        <%= f.submit t('.title'), class: "btn btn-primary" %>
-      <% end %>
-      <div class='text-center'>
-        <%= link_to t('.to_register_page'), new_user_path %>
-        <%= link_to t('.password_forget'), '#' %>
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-r from-green-400 via-blue-500 to-purple-600">
+  <div class="w-full max-w-md bg-white shadow-lg rounded-lg p-8">
+    <h1 class="text-3xl font-extrabold text-center text-blue-600 mb-6">ログイン</h1>
+    <%= form_with url: login_path, local: true do |f| %>
+      <div class="mb-5">
+        <%= f.label :email, class: "block text-sm font-semibold text-gray-700" %>
+        <%= f.email_field :email, class: "mt-1 block w-full p-2 border border-blue-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm" %>
       </div>
+      <div class="mb-5">
+        <%= f.label :password, class: "block text-sm font-semibold text-gray-700" %>
+        <%= f.password_field :password, class: "mt-1 block w-full p-2 border border-blue-300 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm" %>
+      </div>
+      <%= f.submit t('.title'), class: "w-full bg-gradient-to-r from-pink-500 to-yellow-500 text-white py-2 rounded-md hover:from-pink-600 hover:to-yellow-600" %>
+    <% end %>
+    <div class="mt-6 text-center space-x-4">
+      <%= link_to t('.to_register_page'), new_user_path, class: "text-green-600 hover:text-green-800 font-semibold underline" %>
+      <%= link_to t('.password_forget'), '#', class: "text-purple-600 hover:text-purple-800 font-semibold underline" %>
     </div>
   </div>
 </div>
