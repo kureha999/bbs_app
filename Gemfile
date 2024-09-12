@@ -14,6 +14,7 @@ gem "hashie", "~> 5.0.0"
 gem "faraday-net_http", "~> 3.3.0"
 gem "net-http", "~> 0.4.1"
 gem "uri", "~> 0.13.1"
+gem "rails-i18n"
 
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
