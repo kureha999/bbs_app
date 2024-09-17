@@ -4,7 +4,8 @@ class Comment < ApplicationRecord
 
   # 自分の投稿にコメントできないようにするバリデーション
   validate :author_my_not
-
+  # コメントは、空では、投稿できないようにする
+  validates :content, presence: true
   private
 
   def author_my_not

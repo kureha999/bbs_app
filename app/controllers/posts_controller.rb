@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [ :show, :edit, :update, :destroy ]
   # 投稿一覧
   def index
+    @profile = current_user.profile
     @posts = Post.all
   end
   # 投稿詳細
@@ -35,10 +36,7 @@ class PostsController < ApplicationController
   # 投稿削除
   def destroy
     @post.destroy
-    respond_to do |format|
-      format.html { redirect_to posts_path, notice: "投稿が削除されました。" }
-      format.turbo_stream # Turbo Streamを使う場合
-    end
+    redirect_to posts_path, notice: "投稿が削除されました。"
   end
 
   private

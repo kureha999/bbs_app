@@ -1,0 +1,32 @@
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-100 to-gray-300 p-6">
+  <div class="bg-white shadow-lg rounded-lg p-8 max-w-lg w-full">
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">プロフィールを編集</h1>
+
+    <%= form_with model: @profile, local: true, class: "space-y-6" do |form| %>
+      <div>
+        <%= form.label :first_name, '名', class: "block text-sm font-semibold text-gray-700" %>
+        <%= form.text_field :first_name, class: "mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
+      </div>
+
+      <div>
+        <%= form.label :last_name, '姓', class: "block text-sm font-semibold text-gray-700" %>
+        <%= form.text_field :last_name, class: "mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" %>
+      </div>
+
+      <div>
+        <%= form.label :avatar, 'プロフィール画像', class: "block text-sm font-semibold text-gray-700" %>
+        <%= form.file_field :avatar, class: "mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm" %>
+        <% if @profile.avatar.attached? %>
+          <div class="mt-4">
+            <%= image_tag @profile.avatar.variant(resize_to_limit: [150, 150]), class: "rounded-full mx-auto" %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="text-center">
+        <%= form.submit '更新', class: "bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600 transition-colors" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+

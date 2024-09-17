@@ -6,11 +6,14 @@ Rails.application.routes.draw do
 
   # 投稿とコメントのリソース
   resources :posts do
-    resources :comments, only: [ :create ]
+    resources :comments, only: %i[create destroy ]
   end
 
   # ユーザー関連のルーティング
   resources :users, only: %i[new create]
+
+  # プロフィール関連のルーティング
+  resources :profile, only: %i[edit update]
 
   # ログイン関連のルーティング
   get "login", to: "user_sessions#new"
